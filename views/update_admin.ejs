@@ -1,0 +1,150 @@
+<%-include('header')%>
+
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                         
+                            <div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Add admine</strong> 
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="/admine/editeadmindata" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                           <input type="hidden" name="EditId" value="<%= admindata.id %>" id="">
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">First name</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="text-input" name="fname" placeholder=" Enetr First name" class="form-control" value="<%=admindata.name%>">
+                                                   
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="text-input" class=" form-control-label">last name</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="text-input" name="lname" placeholder=" Enetr last name" class="form-control" value="<%=admindata.name%>">
+                                                   
+                                                </div>
+                                            </div> -->
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="email-input" class=" form-control-label">Email </label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="email" id="email-input" name="email" placeholder="Enter Email" class="form-control" value="<%=admindata.email%>">
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="password-input" class=" form-control-label">Password</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="password" id="password-input" name="password" placeholder="Password" class="form-control" value="admindata.password">
+                                                </div>
+                                            </div> -->
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label class=" form-control-label">Select Gender</label>
+                                                </div>
+                                                <div class="col col-md-9">
+                                                    <div class="form-check-inline form-check">
+                                                        <label for="inline-radio1" class="form-check-label ">
+                                                            <input type="radio" id="inline-radio1" name="gender" value="male" class="form-check-input" <%if(admindata.gender == 'male'){%> <%='checked'%> <%}%>>male
+                                                        </label>
+                                                        <label for="inline-radio1" class="form-check-label ">
+                                                            <input type="radio" id="inline-radio1" name="gender" value="female" class="form-check-input"  <%if(admindata.gender == 'female'){%> <%='checked'%> <%}%>>female
+                                                        </label>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </div>
+                                      
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label class=" form-control-label">Select Hooby</label>
+                                                </div>
+                                                <div class="col col-md-9">
+                                                    <div class="form-check-inline form-check">
+                                                        <label for="inline-checkbox1" class="form-check-label ">
+                                                            <input type="checkbox" id="inline-checkbox1" name="Hooby" value="reading" class="form-check-input" <%if(admindata.Hooby.includes('reading')){%> <%='checked'%> <%}%>>reading
+                                                        </label>
+                                                        <label for="inline-checkbox1" class="form-check-label ">
+                                                            <input type="checkbox" id="inline-checkbox1" name="Hooby" value="traveling" class="form-check-input" <%if(admindata.Hooby.includes('traveling')){%> <%='checked'%> <%}%>>traveling
+                                                        </label>
+                                                        <label for="inline-checkbox1" class="form-check-label ">
+                                                            <input type="checkbox" id="inline-checkbox1" name="Hooby" value="gaming" class="form-check-input" <%if(admindata.Hooby.includes('gaming')){%> <%='checked'%> <%}%>>gaming
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Select</label>
+                                                </div>
+                                                <%var city = ['Surat','Navsari','Ahemdabad']%>
+                                                <div class="col-12 col-md-9">
+                                                    <select name="city" id="select" class="form-control">
+                                                        <option value="0">--select-city--</option>
+                                                        <% city.map((v)=>{%>
+                                                            <option value="<%=v%>"<%if(admindata.city==v){%><%='selected'%> <%}%>><%=v%></option>
+                                                        <%})%>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="textarea-input" class=" form-control-label">Discription</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <textarea name="Discription" id="textarea-input" rows="3" placeholder="Content..." class="form-control"><%=admindata.Discription%></textarea>
+                                                </div>
+                                            </div>
+                                          
+                                        
+                                            
+                                            
+                                            
+                                           
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-input" class=" form-control-label">Upload image</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="file" id="file-input" name="Admineimage" class="form-control-file">
+                                                    <img src="<%= admindata.Admineimage %>" height="50"/>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-multiple-input" class=" form-control-label">Multiple File input</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file">
+                                                </div>
+                                            </div> -->
+                                      
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Submit
+                                        </button>
+                                        <button type="reset" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </form> 
+                            </div>
+                          
+                   
+                           
+                        </div>
+                       
+<%-include('footer')%>

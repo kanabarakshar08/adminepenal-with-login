@@ -1,0 +1,177 @@
+<%-include('header')%>
+
+            <!-- MAIN CONTENT-->
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                      
+                      
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">data table</h3>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-left">
+                                        <div class="rs-select2--light rs-select2--md">
+                                            <select class="js-select2" name="property">
+                                                <option selected="selected">All Properties</option>
+                                                <option value="">Option 1</option>
+                                                <option value="">Option 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <div class="rs-select2--light rs-select2--sm">
+                                            <select class="js-select2" name="time">
+                                                <option selected="selected">Today</option>
+                                                <option value="">3 Days</option>
+                                                <option value="">1 Week</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                        <button class="au-btn-filter">
+                                            <i class="zmdi zmdi-filter-list"></i>filters</button>
+                                    </div>
+                                    <form width="100%">
+
+                                        <input type="text" name="search" id="" style="width: 25.75rem; height:40px ; border-radius: 8px; position: relative;" value="<%=search%>">
+                                        <input type="submit" value="⌕"  style="position: absolute;
+                                        right: 302px;
+                                        height: 30px;
+                                        width: 30px;
+                                        background-color: transparent;
+                                        font-size: 26px;
+                                        text-align: center;
+                                        top: 65px;
+                                        line-height: 14px;">
+                                    </form>
+                                    <div class="table-data__tool-right">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                            <i class="zmdi zmdi-plus"></i>add item</button>
+                                        <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                            <select class="js-select2" name="type">
+                                                <option selected="selected">Export</option>
+                                                <option value="">Option 1</option>
+                                                <option value="">Option 2</option>
+                                            </select>
+                                            <div class="dropDownSelect2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form method="post" action="/admine/multepleselce">
+                                    <div class="table-responsive table-responsive-data2">
+                                        <table class="table table-data2">
+                                            <thead>
+                                                
+                                                <tr>
+                                                    <th>
+                                                        <label class="au-checkbox">
+                                                          
+                                                            <input type="checkbox" id="ckbCheckAll">
+                                                            <span class="au-checkmark">
+                                                                <button class="item" data-toggle="tooltip" data-placement="top" title="More" style="font-size: 21px;
+                                                                margin: 0 23px;">
+                                                                    <i class="zmdi zmdi-delete"></i>
+                                                            </button>
+                                                                
+                                                            </span>
+                                                        </label>
+                                                    </th>
+                                                    <th>name</th>
+                                                    <th>email</th>
+                                                    <th>Gender</th>
+                                                    <th>Hooby</th>
+                                                    <th>City</th>
+                                                    <th>image</th>
+                                                    <th>message</th>
+                                                    <th>status</th>
+                                                    <th>ACTION</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% if(admines != ""){
+                                                for(var ad of admines){%>
+                                                <tr class="tr-shadow">
+                                                    <td>
+                                                        <label class="au-checkbox">
+                                                            <input type="checkbox" name="deletechackbox[]" value="<%=ad.id%>" class="checkBoxClass">
+                                                            <span class="au-checkmark"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td><%=ad.name%></td>
+                                                    <td><%=ad.email%></td>
+                                                    <td><%=ad.gender%></td>
+                                                    <td><%=ad.Hooby%></td>
+                                                    <td><%=ad.city%></td>
+                                                    <td><img src="<%= ad.Admineimage %>" height="50"/></td>
+                                                    <td><%=ad.Discription%></td>
+                                                    <td><% if(ad.IsActive){%>
+                                                        <a href="/admine/isactive/<%=ad.id%>" class="alert-success px-1 text-grey">Active</a>
+                                                        <%}else{%>
+                                                            <a href="/admine/isdeactive/<%=ad.id%>" class="bg-danger px-1 text-white">Deactive</a>
+                                                        <%}%>
+                                                    </td>
+                                                
+                                                    <td>
+                                                        <div class="table-data-feature">
+                                                            <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                                <i class="zmdi zmdi-mail-send"></i>
+                                                            </button> -->
+                                                            <a href="/admine/updaterecord/<%=ad.id%>" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                                <i class="zmdi zmdi-edit"></i>
+                                                            </a>
+                                                            <a href="/admine/delterecrod/<%=ad.id %>" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                <i class="zmdi zmdi-delete"></i>
+                                                            </a>
+                                                            <!-- <button class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                                <i class="zmdi zmdi-more"></i>
+                                                            </button> -->
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <%} }else{%>
+                                                    <tr>
+                                                        <td colspan="8" align="center">No Record Found!!</td>
+                                                    </tr>
+                                                <%}%>
+
+                                                <tr>
+                                                    <td colspan="10" align="center"> 
+                                                        <%for(var i =0; i<totalDocument; i++){%>
+                                                            <a href="?page=<%=i%>&search=<%=search%>"><%=i+1%></a>
+                                                        <%}%>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="10" align="center"> 
+                                                        <%var prepage =  parseInt(curentpage)-1%>
+                                                        <%if(prepage>=0){%>
+                                                            <a href="?page=<%=prepage%>&search=<%=search%>">back</a>
+                                                        <%}%>
+                                                        <a href="?page=<%=curentpage%>&search=<%=search%>"><%=parseInt(curentpage)+1%></a>
+                                                        <%var nextpage =  parseInt(curentpage)+1%>
+                                                        <%if(totalDocument>nextpage){%>
+                                                            <a href="?page=<%=nextpage%>&search=<%=search%>">next</a>
+                                                        <%}%>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            
+                                            
+                                        </table>
+                                    </div>
+                                </form>
+                                <!-- END DATA TABLE -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>       
+  
+<%-include('footer')%>
+<script>
+    $(document).ready(function () {
+    $("#ckbCheckAll").click(function () {
+        $(".checkBoxClass").prop('checked', $(this).prop('checked'));
+    });
+});
+</script>
